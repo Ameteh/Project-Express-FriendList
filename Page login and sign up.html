@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login dan Registrasi</title>
+    <link rel="stylesheet" href="stylePage.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm" class="form active">
+            <header class="header"><h2>Log in FriendList</h2></header>
+            <form action="#">
+                <input type="email" placeholder="Masukan email" required>
+                <input type="password" placeholder="Masukan password" required>
+                <a href="#">Lupa Password?</a>
+                <input type="submit" value="Login">
+            </form>
+            <div class="signup">
+                <span id="showRegisterForm">Belum punya akun? Daftar</span>
+            </div>
+        </div>
+        <div id="registerForm" class="form">
+            <header class="header"><h2>Daftar FriendList</h2></header>
+            <form action="#">
+                <input type="text" placeholder="Masukan nama" required>
+                <input type="email" placeholder="Masukan email" required>
+                <input type="password" placeholder="Masukan password" required>
+                <input type="password" placeholder="Konfirmasi password" required>
+                <input type="submit" value="Daftar">
+            </form>
+            <div class="signup">
+                <span id="showLoginForm">Sudah punya akun? Login</span>
+            </div>
+        </div>
+    </div>
+    <script src="scriptPage.js"></script>
+</body>
+</html>

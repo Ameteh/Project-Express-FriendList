@@ -1,0 +1,77 @@
+body {
+
+    background-color: black;
+
+    color: white;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: black; /* latar belakang kotak berwarna hitam */
+    position: relative;
+}
+
+.form {
+    display: none;
+    background-color: black; /* latar belakang kotak berwarna hitam */
+}
+
+.form.active {
+    display: block;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: white;
+    background-color: black; /*latar belakang input berwarna hitam */
+}
+
+.form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; /* latar belakang berwarna biru */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #0056b3; /* latar belakang hover berwarna biru tua */
+}
+
+.signup {
+    text-align: center;
+    margin-top: 20px;
+    background-color: black; /* latar belakang signup berwarna hitam */
+}
+
+.signup span {
+    cursor: pointer;
+    color: #007bff;
+}
+
+/* CSS untuk bagian bawah */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    background-color: black; /* latar belakang footer berwarna hitam */
+}

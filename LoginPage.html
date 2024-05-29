@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login dan Registrasi</title>
+    <link rel="stylesheet" href="LoginPageStyle.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm" class="form active">
+            <header class="header"><h2>Log in FriendList</h2></header>
+            <form action="#">
+                <input type="email" placeholder="Enter Your Email" required id="input">
+                <input type="password" placeholder="Enter Your password" required id="input"> <br> 
+                <a href="#">Forget The Password?</a> </br>
+                <input type="submit" value="Login" id="Submit">
+            </form>
+            <div class="signup">
+                <span id="showRegisterForm">dont have an account?<a href="#"> Sign Up</a></span>
+            </div>
+        </div>
+        <div id="registerForm" class="form">
+            <header class="header"><h2>Sign Up FriendList</h2></header>
+            <form action="#">
+                <input type="text" placeholder="Name" required id="input">
+                <input type="email" placeholder="Email" required id="input">
+                <input type="password" placeholder="Password" required id="input">
+                <input type="password" placeholder="Confirm Pssword" required id="input">
+                <input type="submit" value="Sign Up" id="Submit">
+            </form>
+            <div class="signup">
+                <span id="showLoginForm">already have an account? <a href="#">Login</a></span>
+            </div>
+        </div>
+    </div>
+    <script src="LoginPage.js"></script>
+</body>
+</html>

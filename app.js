@@ -13,7 +13,11 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-var postsRouter = require('./routes/posts'); // <-- route posts
+var member_teamRouter = require('./routes/member_team'); // <-- route schedule
+var scheduleRouter = require('./routes/schedule'); // <-- route schedule
+var teamRouter = require('./routes/team'); // <-- route schedule
+var postsRouter = require('./routes/posts');
+
 
 var app = express();
 
@@ -44,8 +48,11 @@ app.use(flash())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/posts', postsRouter); // use route posts di Express
+app.use('/member_team', member_teamRouter); // use route posts di Express
+app.use('/schedule', scheduleRouter); // use route posts di Express
+app.use('/team', teamRouter); // use route posts di Express
 app.use('/api', apiRouter);
+app.use('/posts', postsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

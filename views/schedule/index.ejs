@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Blogs - SantriKoding.com</title>
+    <title>Data Blogs - FriendList</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
@@ -24,19 +24,18 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="posts/create" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+                        <a href="schedule/create" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">JUDUL</th>
-                                <th scope="col">TANGGAL</th>
-                                <th scope="col">KETERANGAN</th>
-                                <th scope="col">TIM_KIRI</th>
-                                <th scope="col">TIM_KANAN</th>
-                                <th scope="col">SKOR_KIRI</th>
-                                <th scope="col">SKOR_KANAN</th>
-                                <th scope="col">AKSI</th>
+                                <th scope="col">id</th>
+                                <th scope="col">judul</th>
+                                <th scope="col">tanggal</th>
+                                <th scope="col">status</th>
+                                <th scope="col">tim kiri</th>
+                                <th scope="col">tim kanan</th>
+                                <th scope="col">skor kiri</th>
+                                <th scope="col">skor kanan</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -46,15 +45,15 @@
                                         <tr>
                                             <th scope="row" class="text-center"><%= (i+1) %></th>
                                             <td><%= data[i].judul%></td>
-                                            <td><%= data[i].keterangan%></td>
                                             <td><%= data[i].tanggal%></td>
-                                            <td><%= data[i].tim_kiri%></td>
-                                            <td><%= data[i].tim_kanan%></td>
+                                            <td><%= data[i].status%></td>
+                                            <td><%= data[i].id_team_kiri.nama%></td>
+                                            <td><%= data[i].id_team_kanan.nama%></td>
                                             <td><%= data[i].skor_kiri%></td>
                                             <td><%= data[i].skor_kanan%></td>
                                             <td class="text-center">
-                                                <a href="/posts/edit/<%=data[i].id_schedule%>" class="btn btn-sm btn-primary">EDIT</a>
-                                                <a onclick="return alert('Are You sure?')" href="/posts/delete/<%=data[i].id_schedule%>" class="btn btn-sm btn-danger">HAPUS</a>
+                                                <a href="/schedule/edit/<%=data[i].id_schedule%>" class="btn btn-sm btn-primary">EDIT</a>
+                                                <a onclick="return alert('Are You sure?')" href="/schedule/delete/<%=data[i].id_schedule%>" class="btn btn-sm btn-danger">HAPUS</a>
                                             </td>
                                         </tr>
                                     <% }

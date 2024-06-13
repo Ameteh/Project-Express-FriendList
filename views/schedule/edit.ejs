@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Blogs - SantriKoding.com</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+
+<body style="background: lightgray">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <% if (messages.error) { %>
+                    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+                <% } %>
+                <div class="card border-0 shadow rounded">
+                    <div class="card-body">
+                        <form action="/schedule/update/<%= id_schedule %>" method="post">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label>judul</label>
+                                    <input type="text" class="form-control" name="judul" value="<%= judul %>" placeholder="Masukkan Title Post">
+                                </div>
+                                <div class="form-group">
+                                    <label>tanggal</label>
+                                    <input type="text" class="form-control" name="tanggal" value="<%= tanggal %>" placeholder="Masukkan Title Post">
+                                </div>
+                                <div class="form-group">
+                                    <label>status</label>
+                                    <input type="text" class="form-control" name="status" value="<%= status %>" placeholder="Masukkan Title Post">
+                                </div>
+                                <div class="form-group">
+                                    <label>id tkiri</label>
+                                    <input type="text" class="form-control" name="id_tim_kiri" value="<%= id_tim_kiri %>" placeholder="Masukkan Title Post">
+                                </div>
+                                <div class="form-group">
+                                    <label>id_tkanan</label>
+                                    <input type="text" class="form-control" name=id_tim_kanan" value="<%= id_tim_kanan %>" placeholder="Masukkan Title Post">
+                                </div>
+                                <div class="form-group">
+                                    <label>skiri</label>
+                                    <input type="text" class="form-control" name="skor_kiri" value="<%= skor_kiri %>" placeholder="Masukkan Title Post">
+                                </div>
+                                <div class="form-group">
+                                    <label>skanan</label>
+                                    <input type="text" class="form-control" name="skor_kanan" value="<%= skor_kanan %>" placeholder="Masukkan Title Post">
+                                </div>
+                            <button type="submit" class="btn btn-primary">UPDATE</button>
+                            <button type="reset" class="btn btn-warning">RESET</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    </script>
+</body>
+</html>

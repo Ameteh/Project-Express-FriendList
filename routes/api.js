@@ -8,10 +8,10 @@ router.get('/schedule', function (req, res, next) {
     try{
         
     //query
-    connection.query('SELECT * FROM posts ORDER BY id desc', function (err, rows) {
+    connection.query('SELECT * FROM schedule ORDER BY id_schedule desc', function (err, rows) {
         if (err) {
             req.flash('error', err);
-            res.render('posts', {
+            res.render('schedule', {
                 data: ''
             });
             throw new Error("error" + err)
@@ -20,7 +20,7 @@ router.get('/schedule', function (req, res, next) {
           
             res.json(rows.map((row) => {
                 return {
-                    "matchtype": row.title,
+                    "matchtype": row.judul,
                     "home_team": row.content,
                     "away_team": "SEN",
                     "status": "DONE",

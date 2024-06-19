@@ -43,12 +43,12 @@
                                     
                                     for(var i = 0; i< data.length; i++) {%>  
                                         <tr>
-                                            <th scope="row" class="text-center"><%= (i+1) %></th>
+                                            <th scope="row" class="text-center"><%= data[i].id_schedule %></th>
                                             <td><%= data[i].judul%></td>
                                             <td><%= data[i].tanggal%></td>
                                             <td><%= data[i].status%></td>
-                                            <td><%= data[i].id_team_kiri.nama%></td>
-                                            <td><%= data[i].id_team_kanan.nama%></td>
+                                            <td><%= data[i].id_team_kiri%></td>
+                                            <td><%= data[i].id_team_kanan%></td>
                                             <td><%= data[i].skor_kiri%></td>
                                             <td><%= data[i].skor_kanan%></td>
                                             <td class="text-center">

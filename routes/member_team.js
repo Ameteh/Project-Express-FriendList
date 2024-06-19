@@ -9,7 +9,7 @@ var connection = require('../library/database');
  */
 router.get('/', function (req, res, next) {
     //query
-    connection.query('SELECT * FROM tb_member_team ORDER BY id_member desc', function (err, rows) {
+    connection.query('SELECT * FROM tb_member_team ORDER BY id_member asc', function (err, rows) {
         if (err) {
             req.flash('error', err);
             res.render('member_team', {
@@ -132,7 +132,7 @@ router.post('/update/:id_member', function(req, res, next) {
     let id_member = req.params.id_member;
     let nama = req.body.nama;
     let id_team_image = req.body.id_team_image;
-    let errors  = false;
+    let errors = false;
 
     if(nama.length === 0) {
         errors = true;
@@ -140,7 +140,8 @@ router.post('/update/:id_member', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Title");
         // render to add.ejs with flash message
-        res.render('member_team/create', {
+        res.render('member_team/edit', {
+            id_member: req.params.id_member,
             nama: nama,
             id_team_image: id_team_image,
         })
@@ -152,7 +153,8 @@ router.post('/update/:id_member', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('member_team/create', {
+        res.render('member_team/edit', {
+            id_member: req.params.id_member,
             nama: nama,
             id_team_image: id_team_image,
         })
@@ -194,7 +196,7 @@ router.get('/delete/(:id_member)', function(req, res, next) {
 
     let id_member = req.params.id_member;
      
-    connection.query('DELETE FROM tb_member_team WHERE id = ' + id_member, function(err, result) {
+    connection.query('DELETE FROM tb_member_team WHERE id_member = ' + id_member, function(err, result) {
         //if(err) throw err
         if (err) {
             // set flash message

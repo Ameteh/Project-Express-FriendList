@@ -27,28 +27,32 @@
                         <a href="team/create" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
                             <thead>
-                              <tr>
-                                <th scope="col">id_team</th>
-                                <th scope="col">nama_team</th>
-                                <th scope="col">image_logo</th>
-                              </tr>
+                                <tr>
+                                    <th scope="col">id_team</th>
+                                    <th scope="col">nama_team</th>
+                                    <th scope="col">image_logo</th>
+                                </tr>
                             </thead>
                             <tbody>
-                                <% if(data.length){
-                                    
-                                    for(var i = 0; i< data.length; i++) {%>  
+                                <% if(data.length) {
+                                    for(var i = 0; i < data.length; i++) {%>  
                                         <tr>
-                                            <th scope="row" class="text-center"><%= (i+1) %></th>
-                                            <td><%= data[i].nama_team%></td>
-                                            <td><%= data[i].image_logo%></td>
+                                            <th scope="row" class="text-center"><%= data[i].id_team %></th>
+                                            <td><%= data[i].nama_team %></td>
                                             <td class="text-center">
-                                                <a href="/team/edit/<%=data[i].id_team%>" class="btn btn-sm btn-primary">EDIT</a>
-                                                <a onclick="return alert('Are You sure?')" href="/team/delete/<%=data[i].id_team%>" class="btn btn-sm btn-danger">HAPUS</a>
+                                                <% if (data[i].image_logo) { %>
+                                                    <img src="/<%= data[i].image_logo %>" alt="Logo" width="100">
+                                                <% } else { %>
+                                                    No Image
+                                                <% } %>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="/team/edit/<%= data[i].id_team %>" class="btn btn-sm btn-primary">EDIT</a>
+                                                <a onclick="return confirm('Are You sure?')" href="/team/delete/<%= data[i].id_team %>" class="btn btn-sm btn-danger">HAPUS</a>
                                             </td>
                                         </tr>
                                     <% }
-                                    
-                                }else{ %>
+                                } else { %>
                                     <tr>
                                         <td colspan="4">
                                             <div class="alert alert-danger" role="alert">

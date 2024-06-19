@@ -10,7 +10,10 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+
 var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
+var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var member_teamRouter = require('./routes/member_team'); // <-- route schedule
@@ -52,7 +55,9 @@ app.use('/member_team', member_teamRouter); // use route posts di Express
 app.use('/schedule', scheduleRouter); // use route posts di Express
 app.use('/team', teamRouter); // use route posts di Express
 app.use('/api', apiRouter);
+app.use('/admin', adminRouter);
 app.use('/posts', postsRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -71,3 +76,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+

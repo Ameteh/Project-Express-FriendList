@@ -9,7 +9,7 @@ var connection = require('../library/database');
  */
 router.get('/', function (req, res, next) {
     //query
-    connection.query('SELECT * FROM tb_schedule ORDER BY id_schedule desc', function (err, rows) {
+    connection.query('SELECT * FROM tb_schedule ORDER BY id_schedule asc', function (err, rows) {
         if (err) {
             req.flash('error', err);
             res.render('schedule', {
@@ -249,6 +249,7 @@ router.get('/edit/(:id_schedule)', function(req, res, next) {
  */
 router.post('/update/:id_schedule', function(req, res, next) {
 
+    console.log(req.body);
     let id_schedule = req.params.id_schedule;
     let judul = req.body.judul;
     let tanggal = req.body.tanggal;
@@ -265,14 +266,15 @@ router.post('/update/:id_schedule', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Title");
         // render to add.ejs with flash message
-        res.render('schedule/create', {
-            judul: judul,
-            tanggal: tanggal,
-            status: status,
-            id_team_kiri: id_team_kiri,
-            id_team_kanan: id_team_kanan,
-            skor_kiri: skor_kiri,
-            skor_kanan: skor_kanan
+        res.render('schedule/edit', {
+            id_schedule:    req.params.id_schedule,
+            judul:          judul,
+            tanggal:        tanggal,
+            status:         status,
+            id_team_kiri:   id_team_kiri,
+            id_team_kanan:  id_team_kanan,
+            skor_kiri:      skor_kiri,
+            skor_kanan:     skor_kanan
         })
     }
     
@@ -282,14 +284,15 @@ router.post('/update/:id_schedule', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('schedule/create', {
-            judul: judul,
-            tanggal: tanggal,
-            status: status,
-            id_team_kiri: id_team_kiri,
-            id_team_kanan: id_team_kanan,
-            skor_kiri: skor_kiri,
-            skor_kanan: skor_kanan
+        res.render('schedule/edit', {
+            id_schedule:    req.params.id_schedule,
+            judul:          judul,
+            tanggal:        tanggal,
+            status:         status,
+            id_team_kiri:   id_team_kiri,
+            id_team_kanan:  id_team_kanan,
+            skor_kiri:      skor_kiri,
+            skor_kanan:     skor_kanan
         })
     }
     
@@ -299,14 +302,15 @@ router.post('/update/:id_schedule', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('schedule/create', {
-            judul: judul,
-            tanggal: tanggal,
-            status: status,
-            id_team_kiri: id_team_kiri,
-            id_team_kanan: id_team_kanan,
-            skor_kiri: skor_kiri,
-            skor_kanan: skor_kanan
+        res.render('schedule/edit', {
+            id_schedule:    req.params.id_schedule,
+            judul:          judul,
+            tanggal:        tanggal,
+            status:         status,
+            id_team_kiri:   id_team_kiri,
+            id_team_kanan:  id_team_kanan,
+            skor_kiri:      skor_kiri,
+            skor_kanan:     skor_kanan
         })
     }
 
@@ -316,14 +320,15 @@ router.post('/update/:id_schedule', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('schedule/create', {
-            judul: judul,
-            tanggal: tanggal,
-            status: status,
-            id_team_kiri: id_team_kiri,
-            id_team_kanan: id_team_kanan,
-            skor_kiri: skor_kiri,
-            skor_kanan: skor_kanan
+        res.render('schedule/edit', {
+            id_schedule:    req.params.id_schedule,
+            judul:          judul,
+            tanggal:        tanggal,
+            status:         status,
+            id_team_kiri:   id_team_kiri,
+            id_team_kanan:  id_team_kanan,
+            skor_kiri:      skor_kiri,
+            skor_kanan:     skor_kanan
         })
     }
 
@@ -333,14 +338,15 @@ router.post('/update/:id_schedule', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('schedule/create', {
-            judul: judul,
-            tanggal: tanggal,
-            status: status,
-            id_team_kiri: id_team_kiri,
-            id_team_kanan: id_team_kanan,
-            skor_kiri: skor_kiri,
-            skor_kanan: skor_kanan
+        res.render('schedule/edit', {
+            id_schedule:    req.params.id_schedule,
+            judul:          judul,
+            tanggal:        tanggal,
+            status:         status,
+            id_team_kiri:   id_team_kiri,
+            id_team_kanan:  id_team_kanan,
+            skor_kiri:      skor_kiri,
+            skor_kanan:     skor_kanan
         })
     }
 
@@ -350,31 +356,33 @@ router.post('/update/:id_schedule', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('schedule/create', {
-            judul: judul,
-            tanggal: tanggal,
-            status: status,
-            id_team_kiri: id_team_kiri,
-            id_team_kanan: id_team_kanan,
-            skor_kiri: skor_kiri,
-            skor_kanan: skor_kanan
+        res.render('schedule/edit', {
+            id_schedule:    req.params.id_schedule,
+            judul:          judul,
+            tanggal:        tanggal,
+            status:         status,
+            id_team_kiri:   id_team_kiri,
+            id_team_kanan:  id_team_kanan,
+            skor_kiri:      skor_kiri,
+            skor_kanan:     skor_kanan
         })
     }
 
-    if(skor_kanan.length === 0) {
+    if(skor_kiri.length === 0) {
         errors = true;
 
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('schedule/create', {
-            judul: judul,
-            tanggal: tanggal,
-            status: status,
-            id_team_kiri: id_team_kiri,
-            id_team_kanan: id_team_kanan,
-            skor_kiri: skor_kiri,
-            skor_kanan: skor_kanan
+        res.render('schedule/edit', {
+            id_schedule:    req.params.id_schedule,
+            judul:          judul,
+            tanggal:        tanggal,
+            status:         status,
+            id_team_kiri:   id_team_kiri,
+            id_team_kanan:  id_team_kanan,
+            skor_kiri:      skor_kiri,
+            skor_kanan:     skor_kanan
         })
     }
 

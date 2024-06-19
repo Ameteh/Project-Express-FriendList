@@ -1,15 +1,28 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('multer')
+var path = require('path');
 
 //import database
 var connection = require('../library/database');
+var fs = require('fs');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+var upload = multer({ storage: storage });
 
 /**
  * INDEX team
  */
 router.get('/', function (req, res, next) {
     //query
-    connection.query('SELECT * FROM tb_team ORDER BY id_team desc', function (err, rows) {
+    connection.query('SELECT * FROM tb_team ORDER BY id_team asc', function (err, rows) {
         if (err) {
             req.flash('error', err);
             res.render('team', {
@@ -37,12 +50,12 @@ router.get('/create', function (req, res, next) {
 /**
  * STORE team
  */
-router.post('/store', function (req, res, next) {
+router.post('/store', upload.single('avatar'), function (req, res, next) {
     
 
-    console.log(req.body);
+    console.log(req.file, req.body);
     let nama_team   = req.body.nama_team;
-    let image_logo = req.body.image_logo;
+    let image_logo = req.file ? req.file.path : null;
     let errors  = false;
 
     
@@ -58,7 +71,7 @@ router.post('/store', function (req, res, next) {
         })
     }
     
-    if(image_logo.length === 0) {
+    if(image_logo === null) {
         errors = true;
 
         // set flash message
@@ -77,6 +90,7 @@ router.post('/store', function (req, res, next) {
             nama_team: nama_team,
             image_logo: image_logo,
             }
+        image_logo.originalname;
         
         // insert query
         connection.query('INSERT INTO tb_team SET ?', formData, function(err, result) {
@@ -127,11 +141,12 @@ router.get('/edit/(:id_team)', function(req, res, next) {
 /**
  * UPDATE team
  */
-router.post('/update/:id_team', function(req, res, next) {
+router.post('/update/:id_team', upload.single('img'), function(req, res, next) {
 
+    console.log(req.file, req.body);
     let id_team = req.params.id_team;
     let nama_team = req.body.nama_team;
-    let image_logo = req.body.image_logo;
+    let image_logo = req.file ? req.file.path : null;
     let errors  = false;
 
     if(nama_team.length === 0) {
@@ -140,19 +155,21 @@ router.post('/update/:id_team', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Title");
         // render to add.ejs with flash message
-        res.render('team/create', {
+        res.render('team/edit', {
+            id_team: req.params.id_team,
             nama_team: nama_team,
             image_logo: image_logo,
         })
     }
     
-    if(image_logo.length === 0) {
+    if(image_logo === null) {
         errors = true;
 
         // set flash message
         req.flash('error', "Silahkan Masukkan Konten");
         // render to add.ejs with flash message
-        res.render('team/create', {
+        res.render('team/edit', {
+            id_team: req.params.id_team,
             nama_team: nama_team,
             image_logo: image_logo,
         })
@@ -160,6 +177,11 @@ router.post('/update/:id_team', function(req, res, next) {
     
     // if no error
     if( !errors ) {   
+
+        /*connection.query('SELECT * FROM tb_team WHERE id_team = ?', [id_team], function(err, rows) {
+            fs.unlinkSync(rows[0].image_logo);
+        })*/
+        
  
         let formData = {
             nama_team: nama_team,
@@ -192,6 +214,10 @@ router.post('/update/:id_team', function(req, res, next) {
 router.get('/delete/(:id_team)', function(req, res, next) {
 
     let id_team = req.params.id_team;
+
+    connection.query('SELECT * FROM tb_team WHERE id_team = ?', [id_team], function(err, rows) {
+        fs.unlinkSync(rows[0].image_logo);
+    })
      
     connection.query('DELETE FROM tb_team WHERE id_team = ' + id_team, function(err, result) {
         //if(err) throw err

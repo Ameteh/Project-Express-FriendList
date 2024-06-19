@@ -21,14 +21,13 @@
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <form action="/member_team/update/<%= id_member %>" method="post">
-                            <div class="form-group">
                                 <div class="form-group">
                                     <label>nama</label>
-                                    <input type="text" class="form-control" name="judul" value="<%= nama %>" placeholder="Masukkan Title Post">
+                                    <input type="text" class="form-control" name="nama" value="<%= nama %>" placeholder="Masukkan Title Post">
                                 </div>
                                 <div class="form-group">
                                     <label>id_team_image</label>
-                                    <input type="text" class="form-control" name="tanggal" value="<%= id_team_image %>" placeholder="Masukkan Title Post">
+                                    <input type="text" class="form-control" name="id_team_image" value="<%= id_team_image %>" placeholder="Masukkan Title Post">
                                 </div>
                             <button type="submit" class="btn btn-primary">UPDATE</button>
                             <button type="reset" class="btn btn-warning">RESET</button>

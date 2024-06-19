@@ -20,15 +20,15 @@
                 <% } %>
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <form action="/team/update/<%= id_member %>" method="post">
+                        <form action="/team/update/<%= id_team %>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-group">
                                     <label>nama_team</label>
-                                    <input type="text" class="form-control" name="judul" value="<%= nama_team %>" placeholder="Masukkan Title Post">
+                                    <input type="text" class="form-control" name="nama_team" value="<%= nama_team %>" placeholder="Masukkan Title Post">
                                 </div>
                                 <div class="form-group">
                                     <label>image_logo</label>
-                                    <input type="text" class="form-control" name="tanggal" value="<%= image_logo %>" placeholder="Masukkan Title Post">
+                                    <input type="file" name="avatar" />
                                 </div>
                             <button type="submit" class="btn btn-primary">UPDATE</button>
                             <button type="reset" class="btn btn-warning">RESET</button>

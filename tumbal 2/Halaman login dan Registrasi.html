@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login dan Registrasi</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: black; /* Ubah latar belakang kotak menjadi hitam */
+    position: relative;
+}
+
+.form {
+    display: none;
+    background-color: black; /* Ubah latar belakang kotak menjadi hitam */
+}
+
+.form.active {
+    display: block;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: white;
+    background-color: black; /* Ubah latar belakang input menjadi hitam */
+}
+
+.form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; /* Ubah warna latar belakang menjadi biru */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #0056b3; /* Ubah warna latar belakang hover menjadi biru tua */
+}
+
+.signup {
+    text-align: center;
+    margin-top: 20px;
+    background-color: black; /* Ubah latar belakang signup menjadi hitam */
+}
+
+.signup span {
+    cursor: pointer;
+    color: #007bff;
+}
+
+/* CSS untuk bagian bawah */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    background-color: black; /* Ubah latar belakang footer menjadi hitam */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm" class="form active">
+            <header class="header"><h2>Log in untuk FriendList</h2></header>
+            <form action="#">
+                <input type="email" placeholder="Masukan email" required>
+                <input type="password" placeholder="Masukan password" required>
+                <a href="#">Lupa Password?</a>
+                <input type="submit" value="Login">
+            </form>
+            <div class="signup">
+                <span id="showRegisterForm">Belum punya akun? Daftar</span>
+            </div>
+        </div>
+        <div id="registerForm" class="form">
+            <header class="header"><h2>Registrasi untuk gabung bersama FriendList</h2>
+            </header>
+            <form action="#">
+                <input type="text" placeholder="Masukan nama" required>
+                <input type="email" placeholder="Masukan email" required>
+                <input type="password" placeholder="Masukan password" required>
+                <input type="password" placeholder="Konfirmasi password" required>
+                <input type="submit" value="Daftar">
+            </form>
+            <div class="signup">
+                <span id="showLoginForm">Sudah punya akun? Login</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('showRegisterForm').addEventListener('click', function() {
+            document.getElementById('loginForm').classList.remove('active');
+            document.getElementById('registerForm').classList.add('active');
+        });
+
+        document.getElementById('showLoginForm').addEventListener('click', function() {
+            document.getElementById('registerForm').classList.remove('active');
+            document.getElementById('loginForm').classList.add('active');
+        });
+    </script>
+</body>
+</html>

@@ -24,7 +24,7 @@ function database() {
 database();
 
 function fetchData() {
-    fetch("./JS/result.json")
+    fetch("/javascripts/result.json")
     .then((resp) => resp.json())
     .then((res) => {
         res.result.forEach((val, i) => {
@@ -40,6 +40,7 @@ function fetchData() {
 
 function addSchedule(obj, clr){
     // Ambil akses list schedule
+
     let scheduleMap = document.getElementById('scheduleMap');
 
     // Kumpulkan semua data menjadi bagian masing-masing untuk dibuat detailnya
@@ -95,7 +96,8 @@ function createTeamDetail(team){
     // Icon Tim
     const icon = document.createElement("div");
     const img = document.createElement("img")
-    img.setAttribute("src", team[2]);
+    const modifiedString =  "http://localhost:3000/" + team[2].replace(/\\/g, "/");
+    img.setAttribute("src", modifiedString);
     img.setAttribute("width", "50px");
     icon.appendChild(img);
 
@@ -126,10 +128,9 @@ function createMatchResult(match){
     // Tanggal Match
     const date = document.createElement("div");
     date.classList.add("tengah-date");
-    date.appendChild(document.createTextNode(match[2]));
-
+    date.appendChild(document.createTextNode(match[2]));    
     let result = [judul, status, date];
-
+    
     return result;
 }
 
@@ -143,7 +144,7 @@ function toggleScroll() {
 
     scrollable = !scrollable;
 }
-
+/*
 function togglePopup(){
     if(popupVisible){
         document.getElementById("popup").classList.remove("hidden");
@@ -155,3 +156,4 @@ function togglePopup(){
     popupVisible = !popupVisible;
     toggleScroll();
 }
+*/

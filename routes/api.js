@@ -7,7 +7,7 @@ router.get('/schedule', function (req, res, next) {
     
     try{
         //query
-        connection.query('SELECT * FROM tb_schedule ORDER BY id_schedule desc', function (err, rows) {
+        connection.query(' SELECT a.*, b.nama_team AS nama_team_kiri,b.image_logo AS image_logo_kiri, c.nama_team AS nama_team_kanan, c.image_logo AS image_logo_kanan FROM tb_schedule AS a LEFT JOIN tb_team AS b ON a.id_team_kiri = b.id_team LEFT JOIN tb_team AS c ON a.id_team_kanan = c.id_team ORDER BY a.id_schedule DESC;', function (err, rows) {
             if (err) {
                 req.flash('error', err);
                 res.render('schedule', {
@@ -15,39 +15,24 @@ router.get('/schedule', function (req, res, next) {
                 });
                 throw new Error("error" + err)
             } else {
-                //render ke view posts index
+               
+                res.json(rows.map((row) => {
+                    return {
+                        "matchtype": row.judul,
+                        "home_team": row.nama_team_kiri,
+                        "away_team": row.nama_team_kanan,
+                        "status": row.status,
+                        "home_score": row.skor_kiri,
+                        "away_score": row.skor_kanan,
+                        "date": row.tanggal,
+                        "home_team_icon": row.image_logo_kiri,
+                        "away_team_icon": row.image_logo_kanan
+                    }
+                }))
 
-                const row = rows[0];
-                connection.query('SELECT * FROM tb_team WHERE id_team = ? OR id_team = ?', [row.id_team_kiri, row.id_team_kanan], function (err2, rows2) {
-                    /*
-                    let say if the left id is 2 and right is 1, then
-                    the query will resulting the rows in ordered id (1 first, then 2)
-                    if the row1 contains the id 1, while we need to get the id 2 as the left team
-                    so we need to make some adjusment to make sure the first row contain the left team image
-                    */
-                    const row1 = rows2[0];
-                    const row2 = rows2[1];
 
-                    const icon1 = row1.id_team === row.id_team_kiri ? row1.image_logo : row2.image_logo;
-                    const icon2 = row2.id_team === row.id_team_kanan ? row2.image_logo : row1.image_logo;
-
-                    res.json(rows.map((row) => {
-                        return {
-                            "matchtype": row.judul,
-                            "home_team": row.id_team_kiri,
-                            "away_team": row.id_team_kanan,
-                            "status": row.status,
-                            "home_score": row.skor_kiri,
-                            "away_score": row.skor_kanan,
-                            "date": row.tanggal,
-                            "home_team_icon": icon1,
-                            "away_team_icon": icon2
-                        }
-                    }))
-                })
-            }
-        });    
-    } catch(error){
+                   } })}
+             catch(error){
         console.error("error",error)
         res.status(400).json({
             error: error.message

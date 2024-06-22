@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login dan Registrasi</title>
+    <link rel="stylesheet" href="/stylesheets/loginpage.css">
+</head>
+<body>
+    <div class="container">
+        <div id="registerForm" class="form active">
+            <header class="header"><h2>Register</h2></header>
+            <form action="/register" method="POST">
+                <input type="email" name="username" placeholder="Enter Your Email" required id="username">
+                <input type="password" name="password" placeholder="Enter Your password" required id="password"> <br> 
+                <input type="submit" value="Register" id="Submit">
+            </form>
+            <a href="/login">Login</a>
+        </div>
+    </div>
+    
+</body>
+</html>

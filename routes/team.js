@@ -2,21 +2,25 @@ var express = require('express');
 var router = express.Router();
 var multer = require('multer')
 var path = require('path');
+var fs = require('fs');
 
 //import database
 var connection = require('../library/database');
-var fs = require('fs');
+var uploadsDir = path.join(__dirname, '..', 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir);
+}
+
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, 'public/uploads');
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 var upload = multer({ storage: storage });
-
 /**
  * INDEX team
  */
@@ -50,7 +54,7 @@ router.get('/create', function (req, res, next) {
 /**
  * STORE team
  */
-router.post('/store', upload.single('avatar'), function (req, res, next) {
+router.post('/store', upload.single('image'), function (req, res, next) {
     
 
     console.log(req.file, req.body);
@@ -141,7 +145,7 @@ router.get('/edit/(:id_team)', function(req, res, next) {
 /**
  * UPDATE team
  */
-router.post('/update/:id_team', upload.single('img'), function(req, res, next) {
+router.post('/update/:id_team', upload.single('image'), function(req, res, next) {
 
     console.log(req.file, req.body);
     let id_team = req.params.id_team;

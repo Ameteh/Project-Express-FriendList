@@ -16,6 +16,7 @@ var loginRouter = require('./routes/login');
 var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
+var registerRouter = require('./routes/register');
 var member_teamRouter = require('./routes/member_team'); // <-- route schedule
 var scheduleRouter = require('./routes/schedule'); // <-- route schedule
 var teamRouter = require('./routes/team'); // <-- route schedule
@@ -58,6 +59,8 @@ app.use('/api', apiRouter);
 app.use('/admin', adminRouter);
 app.use('/posts', postsRouter);
 app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

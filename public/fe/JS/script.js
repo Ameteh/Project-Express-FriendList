@@ -2,7 +2,7 @@ let popupVisible = false;
 let scrollable = true;
 
 function database() {
-    fetch("http://localhost:3000/api/schedule",{
+    fetch("https://friendslist.gajiin.my.id/api/schedule",{
         method: "GET", 
         headers: {
             "Content-Type": "application/json"
@@ -96,7 +96,7 @@ function createTeamDetail(team){
     console.log(team[2])
     const icon = document.createElement("div");
     const img = document.createElement("img")
-    const modifiedString =  "http://localhost:3000/" + team[2].replace(/\\/g, "/");
+    const modifiedString =  "https://friendslist.gajiin.my.id/" + team[2].replace(/\\/g, "/");
     img.setAttribute("src", modifiedString);
     img.setAttribute("width", "50px");
     icon.appendChild(img);
